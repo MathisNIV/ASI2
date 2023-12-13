@@ -8,9 +8,28 @@ const RegisterPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('New user ' + username + ' created with mail: ' + email);
-    setUsername('');
-    setEmail('');
-    setPassword('');
+    const user = {
+      lastName: username,
+      login: email,
+      pwd: password
+    };
+    fetch('http://localhost:80/users-api/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      setUsername('');
+      setEmail('');
+      setPassword('');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 
   return (
