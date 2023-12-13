@@ -10,6 +10,7 @@ import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
 import {Header} from "./components/Header/Header.jsx";
 import {Chat} from "./components/Play/Chat.jsx";
+import {IndexPage} from "./components/Index/IndexPage"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
     return (
         <Router>
             <Routes>
+                <Route exact path="/" element={<IndexPage />}/>
                 <Route exact path="/my_cards" element={
                     <div className="container-fluid">
                         <Header title="SELL"></Header>

@@ -23,13 +23,13 @@ const RegisterPage = () => {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-      setUsername('');
-      setEmail('');
-      setPassword('');
     })
     .catch((error) => {
       console.error('Error:', error);
     });
+    setUsername('');
+    setEmail('');
+    setPassword('');
   }
 
   return (
