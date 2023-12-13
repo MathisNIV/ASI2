@@ -6,9 +6,17 @@ export const IndexPage =(props) => {
 
     return (
         <div>
-            <Link to="/cards">Cards</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <div className="column">
+                <Link to="/cards">Cards</Link>
+            </div>
+            <div className="column">
+                <Link to="/login">Login</Link>
+            </div>
+            <div className="column">
+                <Link to="/register">Register</Link>
+            </div>
+
+
         </div>
     );
 }
