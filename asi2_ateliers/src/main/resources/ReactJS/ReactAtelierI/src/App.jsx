@@ -10,7 +10,7 @@ import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
 import {Header} from "./components/Header/Header.jsx";
 import {Chat} from "./components/Play/Chat.jsx";
-import {IndexPage} from "./components/Index/IndexPage"
+import {IndexPage} from "./components/Index/IndexPage.jsx"
 
 function App() {
 
