@@ -11,9 +11,27 @@ const LoginPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('User ' + username + ' successfuly connected');
-    setUsername('');
-    setPassword('');
-    dispatch(update_selected_user(username));
+    const user = {
+      username: username,
+      password: password
+    };
+    fetch('http://localhost:80/users-api/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      dispatch(update_selected_user(username));
+      setUsername('');
+      setPassword('');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 
   return (

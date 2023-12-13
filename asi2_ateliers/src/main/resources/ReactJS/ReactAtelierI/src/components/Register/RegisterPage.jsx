@@ -9,8 +9,8 @@ const RegisterPage = () => {
     event.preventDefault();
     console.log('New user ' + username + ' created with mail: ' + email);
     const user = {
-      lastName: username,
-      login: email,
+      login: username,
+      email: email,
       pwd: password
     };
     fetch('http://localhost:80/users-api/user', {

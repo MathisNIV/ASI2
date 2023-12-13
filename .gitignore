@@ -10,7 +10,7 @@
 .classpath
 *.iml
 .idea
-
+.vscode/
 
 # Logs
 logs
@@ -38,5 +38,3 @@ dist-ssr
 *.sw?
 
 
-asi2_ateliers/src/main/resources/ReactJS/ReactAtelierI/package-lock.json
-asi2_ateliers/src/main/resources/ReactJS/ReactAtelierI/package.json
