@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
 import {Header} from "./components/Header/Header.jsx";
+import {Chat} from "./components/Play/Chat.jsx";
 
 function App() {
 
@@ -58,6 +59,7 @@ function App() {
                     </div>}>
                 </Route>
 
+                <Route exact path="/play" element={<Chat />}/>
                 <Route exact path="/login" element={<LoginPage />} />
                 <Route exact path="/register" element={<RegisterPage />} />
             </Routes>
