@@ -13,9 +13,14 @@ public class Sender {
 
     private final JmsTemplate jmsTemplate;
 
-    private static final String QUEUE_KEY = "spring-messaging.queue.name";
+    private static final String UPDATE_USER_QUEUE_KEY = "spring-messaging.queue.update";
 
-    private String queue;
+    private static final String ADD_USER_QUEUE_KEY = "spring-messaging.queue.add";
+
+    private String updateUserQueue;
+
+    private String addUserQueue;
+
 
     private final Environment environment;
 
@@ -27,14 +32,23 @@ public class Sender {
 
     @PostConstruct
     public void init() {
-        queue = environment.getProperty(QUEUE_KEY);
+        updateUserQueue = environment.getProperty(UPDATE_USER_QUEUE_KEY);
+        addUserQueue = environment.getProperty(ADD_USER_QUEUE_KEY);
     }
 
-    public void setQueue(String queue) {
-        this.queue = queue;
+    public void setUpdateQueue(String updateUserQueue) {
+        this.updateUserQueue = updateUserQueue;
     }
 
-    public void sendMessage(UserDTO user) {
-        jmsTemplate.convertAndSend(queue, user);
+    public void setAddQueue(String addUserQueue) {
+        this.addUserQueue = addUserQueue;
+    }
+
+    public void updateUser(UserDTO user) {
+        jmsTemplate.convertAndSend(updateUserQueue, user);
+    }
+
+    public void addUser(UserDTO user) {
+        jmsTemplate.convertAndSend(addUserQueue, user);
     }
 }

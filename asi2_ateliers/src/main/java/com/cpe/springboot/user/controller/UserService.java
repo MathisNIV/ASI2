@@ -41,7 +41,12 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 
-	public UserDTO addUser(UserDTO user) {
+	public String addUserAsync(UserDTO user) {
+		sender.addUser(user);
+		return "Request pending";
+	}
+
+	public UserDTO addUserSync(UserDTO user) {
 		UserModel u = fromUDtoToUModel(user);
 		// needed to avoid detached entity passed to persist error
 		userRepository.save(u);
@@ -53,8 +58,9 @@ public class UserService {
 		return DTOMapper.fromUserModelToUserDTO(uBd);
 	}
 
-	public void updateUserAsync(UserDTO user) {
-		sender.sendMessage(user);
+	public String updateUserAsync(UserDTO user) {
+		sender.updateUser(user);
+		return "Request pending";
 	}
 
 	public UserDTO updateUserSync(UserDTO user) {

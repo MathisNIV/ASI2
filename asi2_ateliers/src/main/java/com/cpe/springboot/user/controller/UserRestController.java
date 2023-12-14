@@ -51,16 +51,14 @@ public class UserRestController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="/user")
-	public UserDTO addUser(@RequestBody UserDTO user) {
-		return userService.addUser(user);
+	public String addUser(@RequestBody UserDTO user) {
+		return userService.addUserAsync(user);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT,value="/user/{id}")
 	public String updateUser(@RequestBody UserDTO user,@PathVariable String id) {
-		System.out.println(id);
 		user.setId(Integer.valueOf(id));
-		userService.updateUserAsync(user);
-		return "Request pending";
+		return userService.updateUserAsync(user);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE,value="/user/{id}")
