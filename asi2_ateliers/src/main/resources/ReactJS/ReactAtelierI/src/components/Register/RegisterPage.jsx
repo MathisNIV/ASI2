@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,6 +25,7 @@ const RegisterPage = () => {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
+      navigate('/login');
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -36,19 +39,27 @@ const RegisterPage = () => {
     <div>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-        </label>
-        <label>
-          Email:
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-        </label>
-        <label>
-          Password:
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        </label>
-        <input type="submit" value="Submit" />
+        <div className="column">
+          <label>
+            <span className="col-sm-5">Username: </span>
+            <input className="col-sm-7" type="text" value={username} onChange={e => setUsername(e.target.value)}/>
+          </label>
+        </div>
+        <div className="column">
+          <label>
+            <span className="col-sm-5"> Password:</span>
+            <input className="col-sm-7" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
+          </label>
+        </div>
+        <div className="column">
+          <label>
+            <span className="col-sm-5">E-mail: </span>
+            <input className="col-sm-7" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+          </label>
+        </div>
+        <div className="column">
+          <input type="submit" value="Save Account"/>
+        </div>
       </form>
     </div>
   );
