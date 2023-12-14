@@ -22,8 +22,13 @@ public class Receiver {
         this.userService = userService;
     }
 
-    @JmsListener(destination = "${spring-messaging.queue.name}")
-    public void receiveMessage(UserDTO user) {
+    @JmsListener(destination = "${spring-messaging.queue.update}")
+    public void receiveUserUpdate(UserDTO user) {
         userService.updateUserSync(user);
+    }
+
+    @JmsListener(destination = "${spring-messaging.queue.add}")
+    public void receiveUserAdd(UserDTO user) {
+        userService.addUserSync(user);
     }
 }
