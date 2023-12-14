@@ -37,4 +37,5 @@ dist-ssr
 *.sln
 *.sw?
 
-
+asi2_ateliers/src/main/resources/ReactJS/ReactAtelierI/package-lock.json
+asi2_ateliers/src/main/resources/ReactJS/ReactAtelierI/package.json
