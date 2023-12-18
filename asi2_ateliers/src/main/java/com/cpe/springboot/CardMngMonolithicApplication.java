@@ -16,8 +16,4 @@ public class CardMngMonolithicApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CardMngMonolithicApplication.class, args);
 	}
-
-
-
-
 }
