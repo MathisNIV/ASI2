@@ -33,7 +33,7 @@ public class MessageRestController {
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/message")
-    public MessageDTO addMessage(@RequestBody MessageDTO message) {
-        return messageService.addMessage(message);
+    public String addMessage(@RequestBody MessageDTO message) {
+        return messageService.addMessageAssync(message);
     }
 }

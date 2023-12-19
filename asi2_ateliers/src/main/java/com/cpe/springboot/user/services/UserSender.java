@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
 @Service
-public class Sender {
+public class UserSender {
 
     private final JmsTemplate jmsTemplate;
 
-    private static final String UPDATE_USER_QUEUE_KEY = "spring-messaging.queue.update";
+    private static final String UPDATE_USER_QUEUE_KEY = "spring-messaging.queue.update-user";
 
-    private static final String ADD_USER_QUEUE_KEY = "spring-messaging.queue.add";
+    private static final String ADD_USER_QUEUE_KEY = "spring-messaging.queue.add-user";
 
     private String updateUserQueue;
 
@@ -25,7 +25,7 @@ public class Sender {
     private final Environment environment;
 
     @Autowired
-    public Sender(JmsTemplate jmsTemplate, Environment environment) {
+    public UserSender(JmsTemplate jmsTemplate, Environment environment) {
         this.jmsTemplate = jmsTemplate;
         this.environment = environment;
     }
@@ -36,11 +36,11 @@ public class Sender {
         addUserQueue = environment.getProperty(ADD_USER_QUEUE_KEY);
     }
 
-    public void setUpdateQueue(String updateUserQueue) {
+    public void setUpdateUserQueue(String updateUserQueue) {
         this.updateUserQueue = updateUserQueue;
     }
 
-    public void setAddQueue(String addUserQueue) {
+    public void setAddUserQueue(String addUserQueue) {
         this.addUserQueue = addUserQueue;
     }
 

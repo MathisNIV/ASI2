@@ -11,17 +11,17 @@ import com.cpe.springboot.card.model.CardModel;
 import com.cpe.springboot.common.tools.DTOMapper;
 import com.cpe.springboot.user.model.UserDTO;
 import com.cpe.springboot.user.model.UserModel;
-import com.cpe.springboot.user.services.Sender;
+import com.cpe.springboot.user.services.UserSender;
 
 
 @Service
 public class UserService {
 
-	private final Sender sender;
+	private final UserSender sender;
 	private final UserRepository userRepository;
 	private final CardModelService cardModelService;
 
-	public UserService(UserRepository userRepository, CardModelService cardModelService, Sender sender) {
+	public UserService(UserRepository userRepository, CardModelService cardModelService, UserSender sender) {
 		this.userRepository = userRepository;
 		this.cardModelService = cardModelService;
 		this.sender = sender;
