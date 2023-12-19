@@ -21,6 +21,10 @@ export const Chat = () => {
             setInputValue('');
         }
     };
+    const handleGetUsers = () => {
+        socket.emit('getUsers');
+    };
+
 
     return (
         <div className="chat-container">
@@ -42,6 +46,7 @@ export const Chat = () => {
                     placeholder="Type your message..."
                 />
                 <button className='fluid ui right labeled icon button' type="submit"><i className="right arrow icon"></i>Send</button>
+                <button onClick={handleGetUsers}>Get Users</button>
             </form>
         </div>
     );
