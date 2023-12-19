@@ -15,6 +15,7 @@ export const Chat = () => {
                 text:inputValue,
                 id: `${socket.id}${Math.random()}`,
                 socketID: socket.id,
+                username: username,
             })
             setMessages((prevMessages) => [...prevMessages, inputValue]);
             setInputValue('');
@@ -27,7 +28,7 @@ export const Chat = () => {
                 <div className="ui segment">
                     {messages.map((msg, index) => (
                         <div className="ui raised segment" key={index}>
-                            <a className="ui blue ribbon label">Eric</a>
+                            <a className="ui blue ribbon label">{msg.username}</a>
                             {msg}
                         </div>
                     ))}

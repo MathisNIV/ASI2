@@ -21,16 +21,18 @@ app.get('/play', (req, res) => {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
-    });
 
     socket.on('msg', (msg) => {
-        console.log("ca fontionne !")
-        io.emit('msg', msg);
+        console.log("ca fonctionne !");
+        io.emit('msg', { ...msg, username: socket.username });
     });
-});
+
+    socket.on('setUsername', (username) => {
+        console.log('Setting username:', username);
+        socket.username = username;
+    });
+
 
 server.listen(3000, () => {
-    console.log('Ecoute sur le prt 3000')
+    console.log('Ecoute sur le port 3000')
 });
