@@ -24,10 +24,9 @@ io.on('connection', (socket) => {
 
     socket.on('msg',  (msg) => {
         io.emit('msg', {...msg});
+        console.log('Message from client:', JSON.stringify(msg));
         try {
-            axios.post('http://localhost:80/users-api/message', {
-                body: msg
-            })
+            axios.post('http://localhost:80/users-api/message', msg)
                 .then((response) => {
                 });
         } catch (error) {

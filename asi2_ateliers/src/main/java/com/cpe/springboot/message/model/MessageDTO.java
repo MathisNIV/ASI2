@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class MessageDTO implements Serializable{
     private Integer id;
     private String text;
-    private Integer socketId;
+    private String socketId;
     private Integer userId;
 
     public MessageDTO() {
@@ -46,11 +46,11 @@ public class MessageDTO implements Serializable{
         this.text = text;
     }
     
-    public Integer getSocketId() {
+    public String getSocketId() {
         return socketId;
     }
     
-    public void setSocketId(Integer socketId) {
+    public void setSocketId(String socketId) {
         this.socketId = socketId;
     }
 

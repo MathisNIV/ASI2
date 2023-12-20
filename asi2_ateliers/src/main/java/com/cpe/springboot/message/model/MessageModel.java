@@ -13,13 +13,13 @@ public class MessageModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     String text;
-    Integer socketId;
+    String socketId;
     Integer userId;
 
     public MessageModel() {
     }
 
-    public MessageModel(Integer id, String text, Integer socketId, Integer userId) {
+    public MessageModel(Integer id, String text, String socketId, Integer userId) {
         this.id = id;
         this.text = text;
         this.socketId = socketId;
@@ -57,11 +57,11 @@ public class MessageModel {
         this.text = text;
     }
     
-    public Integer getSocketId() {
+    public String getSocketId() {
         return socketId;
     }
     
-    public void setSocketId(Integer socketId) {
+    public void setSocketId(String socketId) {
         this.socketId = socketId;
     }
 
