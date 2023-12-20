@@ -13,12 +13,6 @@ const io = new Server(server, {
     }
 });
 
-app.get('/play', (req, res) => {
-    res.json({
-        message: 'Hello world',
-    });
-});
-
 io.on('connection', (socket) => {
     console.log('user connected');
 
