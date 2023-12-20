@@ -12,6 +12,7 @@ import {Header} from "./components/Header/Header.jsx";
 import {Chat} from "./components/Play/Chat.jsx";
 import {IndexPage} from "./components/Index/IndexPage.jsx";
 import {IndexConnected} from "./components/Index/IndexConnected.jsx"
+import {Game} from "./components/Play/Game.jsx";
 
 function App() {
 
@@ -24,27 +25,23 @@ function App() {
                 <Route exact path="/" element={<IndexPage />}/>
                 <Route exact path="/index" element={<IndexConnected />}/>
                 <Route exact path="/my_cards" element={
-                    <body className="container-fluid">
-                        <header>
-                            <Header title="SELL"></Header>
-                        </header>
-                        <main>
-                            <div className="row">
-                                <h3>My Cards</h3>
+                    <div className="container-fluid">
+                        <Header title="SELL"></Header>
+                        <div className="row">
+                            <h3>My Cards</h3>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-5 col-md-5 col-lg-5">
+                                <ListCards cardsList={cardsJSON.cards}/>
                             </div>
-                            <div className="row">
-                                <div className="col-sm-5 col-md-5 col-lg-5">
-                                    <ListCards cardsList={cardsJSON.cards}/>
-                                </div>
-                                <div className="col-sm-3 col-md-3 col-lg-3">
-                                    <div></div>
-                                </div>
-                                <div className="col-sm-4 col-md-4 col-lg-4">
-                                    <DetailCard/>
-                                </div>
+                            <div className="col-sm-3 col-md-3 col-lg-3">
+                                <div></div>
                             </div>
-                        </main>
-                    </body>}>
+                            <div className="col-sm-4 col-md-4 col-lg-4">
+                                <DetailCard/>
+                            </div>
+                        </div>
+                    </div>}>
                 </Route>
 
                 <Route exact path="/market" element={
@@ -68,6 +65,7 @@ function App() {
                 </Route>
 
                 <Route exact path="/play" element={<Chat />}/>
+                <Route exact path="/game" element={<Game />}/>
                 <Route exact path="/login" element={<LoginPage />} />
                 <Route exact path="/register" element={<RegisterPage />} />
             </Routes>

@@ -17,6 +17,11 @@ public class UserDTO implements Serializable{
 	private String lastName;
 	private String surName;
 	private String email;
+	private Boolean host = false;
+	private Integer socketId = 0;
+	private Integer roomId = 0;
+	private Boolean win = false;
+	private Boolean turn = false;
 	private Set<Integer> cardList = new HashSet<>();
 	
 	public UserDTO() {
@@ -30,6 +35,11 @@ public class UserDTO implements Serializable{
 		this.lastName = user.getLastName();
 		this.surName = user.getSurName();
 		this.email = user.getEmail();
+		this.host = user.getHost();
+		this.socketId = user.getSocketId();
+		this.roomId = user.getRoomId();
+		this.win = user.getWin();
+		this.turn = user.getTurn();
 		for (CardModel card : user.getCardList()) {
 			this.cardList.add(card.getId());
 		}
@@ -99,8 +109,49 @@ public class UserDTO implements Serializable{
 		this.email = email;
 	}
 
+	public Boolean getHost() {
+		return host;
+	}
+
+	public Integer getSocketId() {
+		return socketId;
+	}
+
+	public Integer getRoomId() {
+		return roomId;
+	}
+
+	public Boolean getWin() {
+		return win;
+	}
+
+	public Boolean getTurn() {
+		return turn;
+	}
+
+	public void setHost(Boolean host) {
+		this.host = host;
+	}
+
+	public void setSocketId(Integer socketId) {
+		this.socketId = socketId;
+	}
+
+	public void setRoomId(Integer roomId) {
+		this.roomId = roomId;
+	}
+
+	public void setWin(Boolean win) {
+		this.win = win;
+	}
+
+	public void setTurn(Boolean turn) {
+		this.turn = turn;
+	}
+
 	public String toString() {
 		return '{' + "id:" + id + ", login:" + login + ", pwd:" + pwd + ", account:" + account + ", lastName:"
-				+ lastName + ", surName:" + surName + ", email:" + email + ", cardList:" + cardList + '}';
+				+ lastName + ", surName:" + surName + ", email:" + email + ", host:" + host + ", socketId:" + socketId
+				+ ", roomId:" + roomId + ", turn:" + turn + ", win:" + win + ", cardList:" + cardList + '}';
 	}
 }
