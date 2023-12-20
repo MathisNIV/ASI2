@@ -4,7 +4,7 @@ import "../../lib/css/custom.css";
 import socketClient  from "socket.io-client";
 import { useSelector } from 'react-redux';
 
-const socket = socketClient.connect('http://localhost:3001');
+const socket = socketClient.connect('http://localhost:3000');
 
 export const Game = () => {
 
@@ -26,29 +26,34 @@ export const Game = () => {
 
     const HandleButtonClick = (e) => {
         e.preventDefault();
-        console.log("ayee");
+
         let roomId = current_user.roomId;
+
         if (roomId === 0){
-            // current_user.setHost(true);
+            console.log("avant", current_user);
+            (async () => {
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json'},
+                    body: JSON.stringify({ ...current_user, host: true }),
+                };
+                const response = await fetch(string, requestOptions);
+                const data = await response;
+                setCurrent_user(data);
+            })();
+
+            socket.emit('createRoom');
+            socket.emit('createRoom');
+            socket.emit('createRoom');
+
             userStart.hidden = true;
             waitingArea.hidden = false;
             console.log("update", current_user)
             // current_user.setTurn(true);
         }
     };
-        //
-        // if (roomId) {
-        //     player.roomId = roomId;
-        // } else {
-        //     player.host = true;
-        //     player.turn = true;
-        // }
-        //
+
         // player.socketId = socket.id;
-        //
-        // userCard.hidden = true;
-        // waitingArea.classList.remove('d-none');
-        // roomsCard.classList.add('d-none');
 
         // socket.emit('playerData', player);
     // });
