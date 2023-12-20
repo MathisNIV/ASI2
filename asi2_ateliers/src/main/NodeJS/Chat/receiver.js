@@ -22,14 +22,23 @@ app.get('/play', (req, res) => {
 io.on('connection', (socket) => {
     console.log('a user connected');
 
-    socket.on('msg', (msg) => {
-        console.log("ca fonctionne !");
-        io.emit('msg', { ...msg, username: socket.username }); // include username in the emitted message
+    socket.on('msg',  (msg) => {
+        io.emit('msg', {msg, username: socket.userId });
+        try {
+            axios.post('http://localhost:8083/message', {
+                body: msg
+            })
+                .then((response) => {
+                    console.log(response);
+                });
+        } catch (error) {
+            console.error('Error posting message to Spring backend:', error.message);
+        }
     });
 
     socket.on('getUsers', async () => {
         try {
-            const response = await axios.get('http://your-spring-backend-url/users');
+            const response = await axios.get('http://localhost:8083/users');
             const users = response.data;
             console.log('Users from Spring backend:', users);
         } catch (error) {
@@ -37,9 +46,9 @@ io.on('connection', (socket) => {
         }
     });
 
-    socket.on('setUsername', (username) => {
-        console.log('Setting username:', username);
-        socket.username = username;
+    socket.on('setUsername', (userId) => {
+        console.log('Setting username:', userId);
+        socket.userId = userId;
     });
 
     socket.on('disconnect', () => {

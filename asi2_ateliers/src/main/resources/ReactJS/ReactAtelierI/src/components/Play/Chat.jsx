@@ -13,9 +13,8 @@ export const Chat = () => {
         if (inputValue.trim() !== '') {
             socket.emit('msg',{
                 text:inputValue,
-                id: `${socket.id}${Math.random()}`,
                 socketID: socket.id,
-                username: username,
+                userId: userID,
             })
             setMessages((prevMessages) => [...prevMessages, inputValue]);
             setInputValue('');
@@ -32,7 +31,7 @@ export const Chat = () => {
                 <div className="ui segment">
                     {messages.map((msg, index) => (
                         <div className="ui raised segment" key={index}>
-                            <a className="ui blue ribbon label">{msg.username}</a>
+                            <a className="ui blue ribbon label">{msg.userId}</a>
                             {msg}
                         </div>
                     ))}
