@@ -2,6 +2,7 @@ const axios = require('axios');
 
 function initializeChatLogic(io) {
     io.on('connection', (socket) => {
+
         socket.on('msg', (msg) => {
             io.emit('msg', { ...msg });
             try {

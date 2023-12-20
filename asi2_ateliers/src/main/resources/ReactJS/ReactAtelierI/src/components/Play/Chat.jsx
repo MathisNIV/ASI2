@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import "../../lib/lib/Semantic-UI-CSS-master/semantic.min.css";
 import "../../lib/css/custom.css";
-import socketClient  from "socket.io-client";
 import {useSelector} from "react-redux";
-const socket = socketClient.connect('http://localhost:3000');
 
-export const Chat = () => {
+export const Chat = (props) => {
+
     const [inputValue, setInputValue] = useState('');
     const [messages, setMessages] = useState([]);
     const [current_user, setCurrent_user] = useState(null);
+    const socket = props.socket
 
     let current_user_id = useSelector(state => state.userReducer.current_user);
     const string = 'http://localhost:80/users-api/user/'+current_user_id;

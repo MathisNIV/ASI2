@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import "../../lib/lib/Semantic-UI-CSS-master/semantic.min.css";
 import "../../lib/css/custom.css";
-import socketClient  from "socket.io-client";
 import { useSelector } from 'react-redux';
 
-const socket = socketClient.connect('http://localhost:3000');
 
-export const Game = () => {
+export const Game = (props) => {
 
     let current_user_id = useSelector(state => state.userReducer.current_user);
     const [current_user, setCurrent_user] = useState(null);
@@ -24,7 +22,7 @@ export const Game = () => {
     const waitingArea = document.getElementById('waitingArea');
     const quitArea = document.getElementById('quitArea');
 
-    const HandleButtonClick = (e) => {
+    const HandleCreationButtonClick = (e) => {
         e.preventDefault();
 
         // Modify the current_user information host, turn, win
@@ -40,7 +38,7 @@ export const Game = () => {
         //     setCurrent_user(data);
         // })();
 
-        socket.emit('createRoom', current_user.login);
+        props.socket.emit('joinRoom', current_user.login);
         userStart.hidden = true;
         waitingArea.hidden = false;
         console.log("update", current_user)
@@ -48,7 +46,8 @@ export const Game = () => {
 
     const HandleJoinButtonClick = (e) => {
         e.preventDefault();
-        socket.emit('getRooms');
+        props.socket.emit('getRooms');
+
     };
 
 
