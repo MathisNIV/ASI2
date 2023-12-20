@@ -7,7 +7,7 @@ export const IndexConnected =(props) => {
 
     return (
         <div>
-            <Header title=' ' />
+            <Header title=' '/>
             <div className="column">
                 <Link to="/my_cards">SELL</Link>
             </div>
@@ -16,6 +16,9 @@ export const IndexConnected =(props) => {
             </div>
             <div className="column">
                 <Link to="/play">PLAY</Link>
+            </div>
+            <div className="column">
+                <Link to="/game">GAME</Link>
             </div>
 
 

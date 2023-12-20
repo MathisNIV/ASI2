@@ -13,7 +13,7 @@ const RegisterPage = () => {
     const user = {
       login: username,
       email: email,
-      pwd: password
+      pwd: password,
     };
     fetch('http://localhost:80/users-api/user', {
       method: 'POST',
