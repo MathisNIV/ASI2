@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
     socket.on('msg',  (msg) => {
         io.emit('msg', {msg, username: socket.userId });
         try {
-            axios.post('http://localhost:8083/message', {
+            axios.post('http://localhost:80/users-api/message', {
                 body: msg
             })
                 .then((response) => {
@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
 
     socket.on('getUsers', async () => {
         try {
-            const response = await axios.get('http://localhost:8083/users');
+            const response = await axios.get('http://localhost:80/users-api/users');
             const users = response.data;
             console.log('Users from Spring backend:', users);
         } catch (error) {
