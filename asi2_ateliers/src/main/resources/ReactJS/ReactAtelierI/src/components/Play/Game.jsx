@@ -24,40 +24,33 @@ export const Game = () => {
     const waitingArea = document.getElementById('waitingArea');
     const quitArea = document.getElementById('quitArea');
 
-    const HandleButtonClick = (e) => {
+    const HandleCreationButtonClick = (e) => {
         e.preventDefault();
 
-        let roomId = current_user.roomId;
+        // Modify the current_user information host, turn, win
+        // console.log("avant", current_user);
+        // (async () => {
+        //     const requestOptions = {
+        //         method: 'PUT',
+        //         headers: { 'Content-Type': 'application/json'},
+        //         body: JSON.stringify({ ...current_user, host: true }),
+        //     };
+        //     const response = await fetch(string, requestOptions);
+        //     const data = await response;
+        //     setCurrent_user(data);
+        // })();
 
-        if (roomId === 0){
-            console.log("avant", current_user);
-            (async () => {
-                const requestOptions = {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json'},
-                    body: JSON.stringify({ ...current_user, host: true }),
-                };
-                const response = await fetch(string, requestOptions);
-                const data = await response;
-                setCurrent_user(data);
-            })();
+        socket.emit('createRoom', current_user.login);
+        userStart.hidden = true;
+        waitingArea.hidden = false;
+        console.log("update", current_user)
 
-            socket.emit('createRoom');
-            socket.emit('createRoom');
-            socket.emit('createRoom');
-
-            userStart.hidden = true;
-            waitingArea.hidden = false;
-            console.log("update", current_user)
-            // current_user.setTurn(true);
-        }
     };
 
-        // player.socketId = socket.id;
-
-        // socket.emit('playerData', player);
-    // });
-
+    const HandleJoinButtonClick = (e) => {
+        e.preventDefault();
+        socket.emit('getRooms');
+    };
 
 
     return (
@@ -67,13 +60,18 @@ export const Game = () => {
 
                     <div className="card mb-3" id="userStart" hidden={false}>
                         <div className="card-body">
-                            <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleButtonClick}>Join a game</button>
+                            <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleCreationButtonClick}>
+                                Create Room
+                            </button>
+                            <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleJoinButtonClick}>
+                                Join Room
+                            </button>
 
                         </div>
                     </div>
 
                     <div className="d-none" id="waitingArea" hidden={true}>
-                        <div className="card mb-3">
+                    <div className="card mb-3">
                             <div className="card-header">En attente d'un autre joueur</div>
                             <div className="card-body mx-auto">
                                 <div className="spinner-border" role="status">

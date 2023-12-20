@@ -17,19 +17,19 @@ server.listen(3000, () => {
 io.on('connection', (socket) => {
     console.log(`[connection] ${socket.id}`);
 
-    socket.on('createRoom', () => {
-        const room = Math.floor(Math.random() *100);
+    socket.on('createRoom', (room) => {
         socket.join(room);
         console.log("room created", socket.rooms);
-        console.log("nombre de rooms", socket.rooms.size -1);
+        // console.log("nombre de rooms", socket.rooms.size -1);
+
     })
+    socket.on('getRooms', () => {
+        console.log(io.sockets.adapter.rooms);
+    });
 
     socket.on('disconnect', () => {
         console.log(`[disconnect] ${socket.id}`);
 
     });
 
-    socket.on('get rooms', () => {
-        io.to(socket.id).emit('list rooms', rooms);
-    });
 });
