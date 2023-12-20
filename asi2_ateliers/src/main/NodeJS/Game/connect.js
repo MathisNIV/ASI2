@@ -3,26 +3,15 @@ const http = require('http');
 const { join } = require('path');
 const { Socket } = require('socket.io');
 const { Server } = require('socket.io');
-
+const { createServer } = require('http');
+const initializeSocketServer = require('../Socket/socketManager');
+const initializeChatLogic = require('../Chat/chat');
 
 const app = express();
-const server = http.createServer(app);
-
-app.get('/game', (req, res) => {
-    res.json({
-        message: 'Hello ça marche',
-    });
-});
-
-server.listen(3001, () => {
-    console.log(`Ecoute sur 3001`);
-});
-
-const io = new Server(server, {
-    cors: {
-        origin: "http://localhost",
-        methods: ["GET", "POST"]
-    }
+const { server, io } = initializeSocketServer();
+initializeChatLogic(io);
+server.listen(3000, () => {
+    console.log("Ecoute sur 3000");
 });
 
 
