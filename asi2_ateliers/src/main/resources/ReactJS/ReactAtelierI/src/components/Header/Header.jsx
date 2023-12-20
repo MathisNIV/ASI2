@@ -20,18 +20,12 @@ export const Header=(props) =>{
         return (<div></div>)
     }
     else{
-        return(
-            <div>
-                <div className="col-md-2 col-lg-2">
-                    <p>{current_user.account}</p>
-                </div>
-                <div className="col-md-6 col-lg-6">
-                    <h1>{props.title}</h1>
-                </div>
-                <div className="col-md-2 col-lg-2">
-                    <p>{current_user.login}</p>
-                </div>
-            </div>
+        return (
+            <nav className="navbar navbar-light bg-light">
+                <span className="navbar-brand h1">{props.title}</span>
+                <span className="navbar-brand h3">User : {current_user.login}</span>
+                <span className="navbar-brand h3">Money : {current_user.account}</span>
+            </nav>
         )
     }
 }

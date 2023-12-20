@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
@@ -30,6 +31,11 @@ public class UserModel implements Serializable {
 	private String lastName;
 	private String surName;
 	private String email;
+	private Boolean host;
+	private Integer socketId;
+	private Integer roomId;
+	private Boolean win;
+	private Boolean turn;
 
 
 	@OneToMany(cascade = CascadeType.ALL,
@@ -43,6 +49,11 @@ public class UserModel implements Serializable {
 		this.lastName="lastname_default";
 		this.surName="surname_default";
 		this.email="email_default";
+		this.host=false;
+		this.socketId=null;
+		this.roomId = null;
+		this.win=false;
+		this.turn=false;
 	}
 
 	public UserModel(String login, String pwd) {
@@ -62,6 +73,11 @@ public class UserModel implements Serializable {
 		this.lastName=user.getLastName();
 		this.surName=user.getSurName();
 		this.email=user.getEmail();
+		this.host=user.getHost();
+		this.socketId=user.getSocketId();
+		this.roomId=user.getRoomId();
+		this.win=getWin();
+		this.turn=getTurn();
 	}
 
 	public Integer getId() {
@@ -147,4 +163,44 @@ public class UserModel implements Serializable {
 		this.email = email;
 	}
 
+
+	public Boolean getHost() {
+		return host;
+	}
+
+	public Integer getSocketId() {
+		return socketId;
+	}
+
+	public Integer getRoomId() {
+		return roomId;
+	}
+
+	public Boolean getWin() {
+		return win;
+	}
+
+	public Boolean getTurn() {
+		return turn;
+	}
+
+	public void setHost(Boolean host) {
+		this.host = host;
+	}
+
+	public void setSocketId(Integer socketId) {
+		this.socketId = socketId;
+	}
+
+	public void setRoomId(Integer roomId) {
+		this.roomId = roomId;
+	}
+
+	public void setWin(Boolean win) {
+		this.win = win;
+	}
+
+	public void setTurn(Boolean turn) {
+		this.turn = turn;
+	}
 }
