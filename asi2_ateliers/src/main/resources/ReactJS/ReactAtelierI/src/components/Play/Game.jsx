@@ -24,7 +24,7 @@ export const Game = () => {
     const waitingArea = document.getElementById('waitingArea');
     const quitArea = document.getElementById('quitArea');
 
-    const HandleCreationButtonClick = (e) => {
+    const HandleButtonClick = (e) => {
         e.preventDefault();
 
         // Modify the current_user information host, turn, win
@@ -44,8 +44,7 @@ export const Game = () => {
         userStart.hidden = true;
         waitingArea.hidden = false;
         console.log("update", current_user)
-
-    };
+    }
 
     const HandleJoinButtonClick = (e) => {
         e.preventDefault();
@@ -54,11 +53,11 @@ export const Game = () => {
 
 
     return (
-        <div className="container mt-5">
+        <div className="container">
             <div className="row">
-                <div className="col-sm-12 col-md-6 offset-md-3">
+                <div className="column">
 
-                    <div className="card mb-3" id="userStart" hidden={false}>
+                    <div className="card" id="userStart" hidden={false}>
                         <div className="card-body">
                             <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleCreationButtonClick}>
                                 Create Room
@@ -95,5 +94,4 @@ export const Game = () => {
             </div>
         </div>
     );
-
 }

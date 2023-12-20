@@ -13,6 +13,7 @@ import {Chat} from "./components/Play/Chat.jsx";
 import {IndexPage} from "./components/Index/IndexPage.jsx";
 import {IndexConnected} from "./components/Index/IndexConnected.jsx"
 import {Game} from "./components/Play/Game.jsx";
+import {Plateau} from "./components/Play/Plateau";
 
 function App() {
 
@@ -64,7 +65,7 @@ function App() {
                     </div>}>
                 </Route>
 
-                <Route exact path="/play" element={<Chat />}/>
+                <Route exact path="/play" element={<Plateau />}/>
                 <Route exact path="/game" element={<Game />}/>
                 <Route exact path="/login" element={<LoginPage />} />
                 <Route exact path="/register" element={<RegisterPage />} />

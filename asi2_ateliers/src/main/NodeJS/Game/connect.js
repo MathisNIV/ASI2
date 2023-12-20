@@ -9,13 +9,13 @@ const initializeChatLogic = require('../Chat/chat');
 
 const app = express();
 const { server, io } = initializeSocketServer();
-initializeChatLogic(io);
 server.listen(3000, () => {
     console.log("Ecoute sur 3000");
 });
 
 io.on('connection', (socket) => {
     console.log(`[connection] ${socket.id}`);
+    initializeChatLogic(io);
 
     socket.on('createRoom', (room) => {
         socket.join(room);
@@ -31,5 +31,4 @@ io.on('connection', (socket) => {
         console.log(`[disconnect] ${socket.id}`);
 
     });
-
 });
