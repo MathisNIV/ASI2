@@ -25,6 +25,7 @@ export const Chat = () => {
                 ...prevMessages,
                 {
                     text: msg.text,
+                    username: msg.username,
                 }
             ]);        } )
 
@@ -36,15 +37,17 @@ export const Chat = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        if (inputValue.trim() !== '' && current_user) {
+        if (inputValue.trim()) {
             socket.emit('msg', {
                 text: inputValue,
                 socketID: socket.id,
                 userId: current_user.id,
                 username: current_user.login,
             });
+            console.log(current_user.login)
             setInputValue('');
         }
+
     };
 
     const handleGetUsers = () => {

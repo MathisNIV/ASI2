@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
     console.log('user connected');
 
     socket.on('msg',  (msg) => {
-        io.emit('msg', {...msg, username: socket.username });
+        io.emit('msg', {...msg});
         try {
             axios.post('http://localhost:80/users-api/message', {
                 body: msg
