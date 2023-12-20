@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
 
+
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -15,6 +16,7 @@ const RegisterPage = () => {
       email: email,
       pwd: password
     };
+
     fetch('http://localhost:80/users-api/user', {
       method: 'POST',
       headers: {
@@ -22,18 +24,34 @@ const RegisterPage = () => {
       },
       body: JSON.stringify(user)
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      navigate('/login');
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+        .then(response => {
+          console.log('Raw Response:', response);
+
+          if (!response.ok) {
+            throw new Error('Server error: ' + response.status);
+          }
+
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            return response.json();
+          } else {
+            return response.text();
+          }
+        })
+        .then(data => {
+          console.log('Success:', data);
+          navigate('/login');
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
     setUsername('');
     setEmail('');
     setPassword('');
   }
+
+
 
   return (
     <div>
