@@ -40,7 +40,7 @@ export const Chat = () => {
         if (inputValue.trim()) {
             socket.emit('msg', {
                 text: inputValue,
-                socketID: socket.id,
+                socketId: socket.id,
                 userId: current_user.id,
                 username: current_user.login,
             });

@@ -1,4 +1,4 @@
-package com.cpe.springboot.message.model;
+package com.cpe.logger.modeles;
 
 import java.io.Serializable;
 
@@ -9,17 +9,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class MessageDTO implements Serializable{
     private Integer id;
     private String text;
-    private String socketId;
+    private Integer socketId;
     private Integer userId;
 
     public MessageDTO() {
-    }
-
-    public MessageDTO(MessageModel message) {
-        this.id = message.getId();
-        this.text = message.getText();
-        this.socketId = message.getSocketId();
-        this.userId = message.getUserId();
     }
 
     public Integer getId() {
@@ -46,11 +39,11 @@ public class MessageDTO implements Serializable{
         this.text = text;
     }
     
-    public String getSocketId() {
+    public Integer getSocketId() {
         return socketId;
     }
     
-    public void setSocketId(String socketId) {
+    public void setSocketId(Integer socketId) {
         this.socketId = socketId;
     }
 
