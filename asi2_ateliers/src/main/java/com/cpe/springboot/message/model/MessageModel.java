@@ -14,20 +14,23 @@ public class MessageModel {
     Integer id;
     String text;
     Integer socketId;
+    Integer userId;
 
     public MessageModel() {
     }
 
-    public MessageModel(Integer id, String text, Integer socketId) {
+    public MessageModel(Integer id, String text, Integer socketId, Integer userId) {
         this.id = id;
         this.text = text;
         this.socketId = socketId;
+        this.userId = userId;
     }
 
     public MessageModel(MessageDTO message) {
         this.id = message.getId();
         this.text = message.getText();
         this.socketId = message.getSocketId();
+        this.userId = message.getUserId();
     }
 
     public Integer getId() {
@@ -37,7 +40,15 @@ public class MessageModel {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Integer getUserId() {
+        return userId;
+    }
     
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public String getText() {
         return text;
     }

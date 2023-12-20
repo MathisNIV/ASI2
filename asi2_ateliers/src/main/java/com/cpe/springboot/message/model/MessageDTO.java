@@ -10,6 +10,7 @@ public class MessageDTO implements Serializable{
     private Integer id;
     private String text;
     private Integer socketId;
+    private Integer userId;
 
     public MessageDTO() {
     }
@@ -18,6 +19,7 @@ public class MessageDTO implements Serializable{
         this.id = message.getId();
         this.text = message.getText();
         this.socketId = message.getSocketId();
+        this.userId = message.getUserId();
     }
 
     public Integer getId() {
@@ -26,6 +28,14 @@ public class MessageDTO implements Serializable{
     
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public Integer getUserId() {
+        return userId;
+    }
+    
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
     
     public String getText() {
