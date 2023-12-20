@@ -9,27 +9,26 @@ const initializeChatLogic = require('../Chat/chat');
 
 const app = express();
 const { server, io } = initializeSocketServer();
-initializeChatLogic(io);
 server.listen(3000, () => {
     console.log("Ecoute sur 3000");
 });
 
 io.on('connection', (socket) => {
     console.log(`[connection] ${socket.id}`);
+    initializeChatLogic(io);
 
     socket.on('createRoom', () => {
-        const room = Math.floor(Math.random() *100);
+        const room = Math.floor(Math.random() * 100);
         socket.join(room);
-        console.log("room created", socket.rooms);
-        console.log("nombre de rooms", socket.rooms.size -1);
-    })
+        console.log("Room created", socket.rooms);
+    });
 
     socket.on('disconnect', () => {
         console.log(`[disconnect] ${socket.id}`);
-
     });
 
     socket.on('get rooms', () => {
+        const rooms = [...io.sockets.adapter.rooms.keys()];
         io.to(socket.id).emit('list rooms', rooms);
     });
 });

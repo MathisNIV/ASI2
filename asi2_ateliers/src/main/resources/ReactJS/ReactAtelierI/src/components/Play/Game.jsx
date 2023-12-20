@@ -27,30 +27,13 @@ export const Game = () => {
     const HandleButtonClick = (e) => {
         e.preventDefault();
 
-        let roomId = current_user.roomId;
+        socket.emit('createRoom');
+        socket.emit('createRoom');
+        socket.emit('createRoom');
 
-        if (roomId === 0){
-            console.log("avant", current_user);
-            (async () => {
-                const requestOptions = {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json'},
-                    body: JSON.stringify({ ...current_user, host: true }),
-                };
-                const response = await fetch(string, requestOptions);
-                const data = await response;
-                setCurrent_user(data);
-            })();
+        userStart.hidden = true;
+        waitingArea.hidden = false;
 
-            socket.emit('createRoom');
-            socket.emit('createRoom');
-            socket.emit('createRoom');
-
-            userStart.hidden = true;
-            waitingArea.hidden = false;
-            console.log("update", current_user)
-            // current_user.setTurn(true);
-        }
     };
 
         // player.socketId = socket.id;
@@ -61,11 +44,11 @@ export const Game = () => {
 
 
     return (
-        <div className="container mt-5">
+        <div className="container">
             <div className="row">
-                <div className="col-sm-12 col-md-6 offset-md-3">
+                <div className="">
 
-                    <div className="card mb-3" id="userStart" hidden={false}>
+                    <div className="card" id="userStart" hidden={false}>
                         <div className="card-body">
                             <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleButtonClick}>Join a game</button>
 
