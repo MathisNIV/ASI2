@@ -12,10 +12,11 @@ const { server, io } = initializeSocketServer();
 server.listen(3000, () => {
     console.log("Ecoute sur 3000");
 });
+initializeChatLogic(io);
+
 
 io.on('connection', (socket) => {
     console.log(`[connection] ${socket.id}`);
-    initializeChatLogic(io);
 
     socket.on('createRoom', (room) => {
         socket.join(room);

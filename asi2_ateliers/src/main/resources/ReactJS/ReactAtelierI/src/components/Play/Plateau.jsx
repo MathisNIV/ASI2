@@ -7,10 +7,10 @@ import {Game} from "./Game";
 export const Plateau = () => {
     return (
         <div className="ui grid">
-            <div className="two wide column">
+            <div className="eight wide column">
                 <Chat />
             </div>
-            <div className="two wide column">
+            <div className="eight wide column">
                 <Game />
             </div>
         </div>
