@@ -57,7 +57,7 @@ export const Game = (props) => {
                 <div className="column">
                     <div className="card" id="userStart" hidden={false}>
                         <div className="card-body">
-                            <button className="ui button primary" id="start" onClick={HandleButtonClick}>
+                            <button className="ui button primary" id="start" onClick={HandleCreationButtonClick}>
                                 Create Room
                             </button>
                             <button className="ui button primary" id="start" onClick={HandleJoinButtonClick}>

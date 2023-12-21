@@ -7,8 +7,6 @@ server.listen(3000, () => {
 });
 initializeChatLogic(io);
 
-
-initializeChatLogic(io);
 io.on('connection', (socket) => {
     console.log(`[connection] ${socket.id}`);
 
