@@ -55,40 +55,33 @@ export const Game = (props) => {
         <div className="container">
             <div className="row">
                 <div className="column">
-
                     <div className="card" id="userStart" hidden={false}>
                         <div className="card-body">
-                            <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleCreationButtonClick}>
+                            <button className="ui button primary" id="start" onClick={HandleButtonClick}>
                                 Create Room
                             </button>
-                            <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleJoinButtonClick}>
+                            <button className="ui button primary" id="start" onClick={HandleJoinButtonClick}>
                                 Join Room
                             </button>
-
                         </div>
                     </div>
 
                     <div className="d-none" id="waitingArea" hidden={true}>
-                    <div className="card mb-3">
+                        <div className="card mb-3">
                             <div className="card-header">En attente d'un autre joueur</div>
                             <div className="card-body mx-auto">
-                                <div className="spinner-border" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
+                                <div className="ui active inline loader"></div>
                             </div>
                         </div>
                     </div>
 
                     <div className="card d-none" id="gamePlay" hidden={true}>
-                        <div className="card-header">
-                            GAME PLAY
-                        </div>
+                        <div className="card-header">GAME PLAY</div>
                     </div>
 
                     <div className="text-center d-none mt-2" id="quitArea" hidden={true}>
-                        <input className="btn btn-primary" id="quit" type="button" value="Quit Game" />
+                        <button className="ui button primary" id="quit">Quit Game</button>
                     </div>
-
                 </div>
             </div>
         </div>

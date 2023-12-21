@@ -5,6 +5,8 @@ const { server, io } = initializeSocketServer();
 server.listen(3000, () => {
     console.log("Ecoute sur 3000");
 });
+initializeChatLogic(io);
+
 
 initializeChatLogic(io);
 io.on('connection', (socket) => {
