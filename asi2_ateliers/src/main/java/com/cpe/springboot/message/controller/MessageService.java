@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.cpe.springboot.message.model.MessageDTO;
+import com.cpe.message.model.MessageDTO;
 import com.cpe.springboot.message.model.MessageModel;
 import com.cpe.springboot.message.services.MessageSender;
+import com.cpe.springboot.common.tools.DTOMapper;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,8 @@ public class MessageService {
     }
 
     public MessageDTO addMessageSync(MessageDTO message) {
-        MessageModel mBd = messageRepository.save(new MessageModel(message));
-        return new MessageDTO(mBd);
+        MessageModel mBd = new MessageModel(message);
+        messageRepository.save(mBd);
+        return DTOMapper.fromMessageModelToMessageDTO(mBd);
     }
 }

@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.cpe.message.model.MessageDTO;
+
 
 @Entity
 public class MessageModel {
@@ -66,6 +68,6 @@ public class MessageModel {
     }
 
     public String toString() {
-        return "{id=" + id + ", text=" + text + ", socketId=" + socketId + "}";
+        return "{id:" + id + ", text:" + text + ", socketId:" + socketId +  ", userId:" + userId + "}";
     }
 }

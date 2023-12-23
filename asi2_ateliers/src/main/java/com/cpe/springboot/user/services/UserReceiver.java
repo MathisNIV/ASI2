@@ -1,7 +1,7 @@
 package com.cpe.springboot.user.services;
 
 import com.cpe.springboot.user.controller.UserService;
-import com.cpe.springboot.user.model.UserDTO;
+import com.cpe.user.model.UserDTO;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

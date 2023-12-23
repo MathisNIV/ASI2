@@ -1,6 +1,6 @@
 package com.cpe.springboot.message.services;
 
-import com.cpe.springboot.message.model.MessageDTO;
+import com.cpe.message.model.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.jms.core.JmsTemplate;

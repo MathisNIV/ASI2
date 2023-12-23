@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.cpe.springboot.card.model.CardDTO;
+import com.cpe.card.model.CardDTO;
 import com.cpe.springboot.card.model.CardModel;
 import com.cpe.springboot.common.tools.DTOMapper;
 
@@ -33,7 +33,7 @@ public class CardRestController {
 	private List<CardDTO> getAllCards() {
 		List<CardDTO> cLightList=new ArrayList<>();
 		for(CardModel c:cardModelService.getAllCardModel()){
-			cLightList.add(new CardDTO(c));
+			cLightList.add(DTOMapper.fromCardModelToCardDTO(c));
 		}
 		return cLightList;
 
@@ -70,8 +70,7 @@ public class CardRestController {
 	private List<CardDTO> getCardsToSell() {
 		List<CardDTO> list=new ArrayList<>();
 		for( CardModel c : cardModelService.getAllCardToSell()){
-			CardDTO cLight=new CardDTO(c);
-			list.add(cLight);
+			list.add(DTOMapper.fromCardModelToCardDTO(c));
 		}
 		return list;
 
