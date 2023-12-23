@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 
-import com.cpe.logger.modeles.MessageDTO;
-import com.cpe.logger.modeles.UserDTO;
+import com.cpe.message.model.MessageDTO;
+import com.cpe.user.model.UserDTO;
 
 @Service
 public class QueuesListener {
@@ -17,19 +17,19 @@ public class QueuesListener {
     public QueuesListener() {
     }
 
-    @JmsListener(destination = "${spring-messaging.queue.update-user}")
+    @JmsListener(destination = "${spring-messaging.queue.update-user.qmirror}", containerFactory = "jmsListenerContainerFactory")
     public void receiveUserUpdate(UserDTO user) {
         log.info(user);
     }
 
-    @JmsListener(destination = "${spring-messaging.queue.add-user}")
+    @JmsListener(destination = "${spring-messaging.queue.add-user.qmirror}", containerFactory = "jmsListenerContainerFactory")
     public void receiveUserAdd(UserDTO user) {
         System.out.println(user);
         log.info(user);
     }
 
-    @JmsListener(destination = "${spring-messaging.queue.add-message}")
-    public void receiveMessageAdd(MessageDTO message) {
+    @JmsListener(destination = "${spring-messaging.queue.add-message.qmirror}", containerFactory = "jmsListenerContainerFactory")
+    public void receiveMessageAdd(String message) {
         log.info(message);
     }
 }

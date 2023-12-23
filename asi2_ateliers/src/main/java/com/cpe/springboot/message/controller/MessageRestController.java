@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.cpe.springboot.message.model.MessageDTO;
+import com.cpe.message.model.MessageDTO;
+import com.cpe.springboot.common.tools.DTOMapper;
 import com.cpe.springboot.message.model.MessageModel;
 
 
@@ -27,7 +28,7 @@ public class MessageRestController {
     private List<MessageDTO> getAllMessages() {
         List<MessageDTO> mModelList = new ArrayList<MessageDTO>();
         for(MessageModel mM: messageService.getAllMessages()){
-            mModelList.add(new MessageDTO(mM));
+            mModelList.add(DTOMapper.fromMessageModelToMessageDTO(mM));
         }
         return mModelList;
     }

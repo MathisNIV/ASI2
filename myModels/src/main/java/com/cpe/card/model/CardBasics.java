@@ -1,4 +1,4 @@
-package com.cpe.springboot.card.model;
+package com.cpe.card.model;
 
 import javax.persistence.MappedSuperclass;
 

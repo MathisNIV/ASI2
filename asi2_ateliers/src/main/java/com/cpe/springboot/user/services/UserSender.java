@@ -1,6 +1,6 @@
 package com.cpe.springboot.user.services;
 
-import com.cpe.springboot.user.model.UserDTO;
+import com.cpe.user.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.jms.core.JmsTemplate;

@@ -5,9 +5,7 @@ function initializeChatLogic(io) {
         socket.on('msg', (msg) => {
             io.emit('msg', { ...msg });
             try {
-                axios.post('http://localhost:80/users-api/message', {
-                    body: msg
-                }).then((response) => {
+                axios.post('http://localhost:80/users-api/message', msg).then((response) => {
                     // Handle the response if needed
                 });
             } catch (error) {

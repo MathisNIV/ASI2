@@ -1,6 +1,8 @@
 package com.cpe.springboot.user.model;
 
 import com.cpe.springboot.card.model.CardModel;
+import com.cpe.user.model.UserDTO;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -15,7 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.criteria.CriteriaBuilder;
+
 
 @Entity
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
