@@ -1,5 +1,7 @@
 package com.cpe.springboot.card.model;
 
+import com.cpe.card.model.CardBasics;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

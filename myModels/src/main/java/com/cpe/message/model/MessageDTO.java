@@ -1,4 +1,4 @@
-package com.cpe.springboot.message.model;
+package com.cpe.message.model;
 
 import java.io.Serializable;
 
@@ -13,13 +13,6 @@ public class MessageDTO implements Serializable{
     private Integer userId;
 
     public MessageDTO() {
-    }
-
-    public MessageDTO(MessageModel message) {
-        this.id = message.getId();
-        this.text = message.getText();
-        this.socketId = message.getSocketId();
-        this.userId = message.getUserId();
     }
 
     public Integer getId() {
@@ -55,6 +48,6 @@ public class MessageDTO implements Serializable{
     }
 
     public String toString() {
-        return "{id:" + id + ", text:" + text + ", socketId:" + socketId + "}";
+        return "{id:" + id + ", text:" + text + ", socketId:" + socketId + ", userId:" + userId + "}";
     }
 }

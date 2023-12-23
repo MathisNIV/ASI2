@@ -1,9 +1,9 @@
-package com.cpe.springboot.user.model;
+package com.cpe.user.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.cpe.springboot.card.model.CardModel;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -25,24 +25,6 @@ public class UserDTO implements Serializable{
 	private Set<Integer> cardList = new HashSet<>();
 	
 	public UserDTO() {
-	}
-
-	public UserDTO(UserModel user) {
-		this.id = user.getId();
-		this.login = user.getLogin();
-		this.pwd = user.getPwd();
-		this.account = user.getAccount();
-		this.lastName = user.getLastName();
-		this.surName = user.getSurName();
-		this.email = user.getEmail();
-		this.host = user.getHost();
-		this.socketId = user.getSocketId();
-		this.roomId = user.getRoomId();
-		this.win = user.getWin();
-		this.turn = user.getTurn();
-		for (CardModel card : user.getCardList()) {
-			this.cardList.add(card.getId());
-		}
 	}
 
 	public Integer getId() {

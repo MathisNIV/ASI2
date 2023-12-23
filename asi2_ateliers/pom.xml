@@ -63,7 +63,11 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.9</version>
 		</dependency>
-
+	<dependency>
+        <groupId>com.cpe</groupId>
+        <artifactId>myModels</artifactId>
+        <version>1.0.3</version>
+    </dependency>
 	</dependencies>
 
 	<build>

@@ -18,9 +18,6 @@ export const Chat = (props) => {
             .then(response => response.json())
             .then(data => setCurrent_user(data))
         socket.on('msg' , (msg) => {
-            console.log(
-                msg
-            )
             setMessages((prevMessages) => [
                 ...prevMessages,
                 {
@@ -56,7 +53,7 @@ export const Chat = (props) => {
 
 
     return (
-        <div className="chat-container">
+        <div className="ui center aligned segment chat-container">
             <div className="messages-container">
                 <div className="ui segment">
                     {messages.map((msg, index) => (
@@ -67,15 +64,17 @@ export const Chat = (props) => {
                     ))}
                 </div>
             </div>
-            <form className="ui form" onSubmit={handleFormSubmit}>
-                <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Type your message..."
-                />
-                <button className='fluid ui right labeled icon button' type="submit"><i className="right arrow icon"></i>Send</button>
-                <button className='fluid ui right labeled icon button' onClick={handleGetUsers}>Get Users</button>
+            <form className="ui form center aligned" onSubmit={handleFormSubmit}>
+                <div className="ui action input">
+                    <input
+                        type="text"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        placeholder="Type your message..."
+                    />
+                    <button className='ui button' type="submit">Send</button>
+                    <button className='ui button' onClick={handleGetUsers}>Get Users</button>
+                </div>
             </form>
         </div>
     );

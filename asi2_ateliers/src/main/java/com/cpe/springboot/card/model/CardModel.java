@@ -1,5 +1,7 @@
 package com.cpe.springboot.card.model;
 
+import com.cpe.card.model.CardDTO;
+import com.cpe.card.model.CardBasics;
 import com.cpe.springboot.store.model.StoreTransaction;
 import com.cpe.springboot.user.model.UserModel;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -42,6 +44,10 @@ public class CardModel extends CardBasics{
 
 	public CardModel( CardBasics cardBasic) {
 		super(cardBasic);
+	}
+
+	public CardModel(CardDTO cardDTO) {
+		super(cardDTO);
 	}
 
 	public CardModel(String name, String description, String family, String affinity, float energy, float hp,
