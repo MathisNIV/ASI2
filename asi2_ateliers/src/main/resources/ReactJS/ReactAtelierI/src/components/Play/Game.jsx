@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import "../../lib/lib/Semantic-UI-CSS-master/semantic.min.css";
 import "../../lib/css/custom.css";
 import { useSelector } from 'react-redux';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 
 export const Game = (props) => {
@@ -22,6 +24,11 @@ export const Game = (props) => {
     const waitingArea = document.getElementById('waitingArea');
     const quitArea = document.getElementById('quitArea');
 
+    const socket = props.socket;
+    const room = props.room;
+    const setRoom = props.setRoom;
+    const [ListOfRooms, setListOfRooms] = useState([" Not available"]);
+
     const HandleCreationButtonClick = (e) => {
         e.preventDefault();
 
@@ -38,17 +45,33 @@ export const Game = (props) => {
         //     setCurrent_user(data);
         // })();
 
-        props.socket.emit('joinRoom', current_user.login);
+        socket.emit('createRoom', current_user.login);
         userStart.hidden = true;
         waitingArea.hidden = false;
-        console.log("update", current_user)
+        setRoom(current_user.login);
+        // console.log("update", current_user)
     }
 
     const HandleJoinButtonClick = (e) => {
         e.preventDefault();
-        props.socket.emit('getRooms');
-
+        socket.emit('getRooms');
+        socket.on('roomsList', (listRooms) => {
+            if (listRooms){
+                setListOfRooms(listRooms);
+            }
+            else{
+                setListOfRooms(["Not available"]);
+            }
+        });
     };
+
+    const ChosenARoom = (roomSelected) => {
+        socket.emit('joinRoom', roomSelected);
+        gamePlay.hidden = false;
+        userStart.hidden = true;
+        setListOfRooms(prevRooms => prevRooms.filter(room => room !== roomSelected));
+        setRoom(roomSelected);
+    }
 
 
     return (
@@ -61,15 +84,27 @@ export const Game = (props) => {
                             <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleCreationButtonClick}>
                                 Create Room
                             </button>
-                            <button className="btn col-lg-2 btn-primary" id="start" onClick={HandleJoinButtonClick}>
-                                Join Room
-                            </button>
+                            <Dropdown className="btn col-lg-2" onClick={HandleJoinButtonClick}>
+                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                    Select Room
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    {ListOfRooms.map((room, index) => (
+                                        <div key={index}>
+                                            <Dropdown.Item href={`#/room-${index}`} onClick={() => ChosenARoom(room)}>
+                                                Room {room}
+                                            </Dropdown.Item>
+                                        </div>
+                                    ))}
+                                </Dropdown.Menu>
+                            </Dropdown>
 
                         </div>
                     </div>
 
                     <div className="d-none" id="waitingArea" hidden={true}>
-                    <div className="card mb-3">
+                        <div className="card mb-3">
                             <div className="card-header">En attente d'un autre joueur</div>
                             <div className="card-body mx-auto">
                                 <div className="spinner-border" role="status">
@@ -86,7 +121,7 @@ export const Game = (props) => {
                     </div>
 
                     <div className="text-center d-none mt-2" id="quitArea" hidden={true}>
-                        <input className="btn btn-primary" id="quit" type="button" value="Quit Game" />
+                        <input className="btn btn-primary" id="quit" type="button" value="Quit Game"/>
                     </div>
 
                 </div>
