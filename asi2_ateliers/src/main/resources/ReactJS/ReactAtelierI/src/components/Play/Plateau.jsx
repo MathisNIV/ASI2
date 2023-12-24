@@ -18,6 +18,7 @@ export const Plateau = () => {
                     setRoom = {setRoom}
                 />
             </div>
+            <div className="four wide column"></div>
             <div className="two wide column">
                 <Game
                     socket = {socket}
