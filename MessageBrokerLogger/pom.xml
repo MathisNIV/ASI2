@@ -7,6 +7,21 @@
   <version>1.0-SNAPSHOT</version>
   <name>MessageBrokerLogger</name>
   <url>http://maven.apache.org</url>
+  <properties>
+    <start-class>com.cpe.logger.Logger</start-class>
+  </properties>
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <mainClass>com.cpe.logger.Logger</mainClass>
+                <layout>JAR</layout>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
