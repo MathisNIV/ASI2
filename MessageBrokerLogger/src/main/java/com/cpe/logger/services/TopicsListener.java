@@ -17,17 +17,17 @@ public class TopicsListener {
     public TopicsListener() {
     }
 
-    @JmsListener(destination = "com.cpe.spring-app.in.update-user.qmirror")
+    @JmsListener(destination = "${spring-messaging.queue.update-user.qmirror}")
     public void receiveUserUpdate(UserDTO user) {
         log.info("UpdateUserQueue: " + user);
     }
 
-    @JmsListener(destination = "com.cpe.spring-app.in.add-user.qmirror")
+    @JmsListener(destination = "${spring-messaging.queue.add-user.qmirror}")
     public void receiveUserAdd(UserDTO user) {
         log.info("AddUserQueue: " + user);
     }
 
-    @JmsListener(destination = "com.cpe.spring-app.in.add-message.qmirror")
+    @JmsListener(destination = "${spring-messaging.queue.add-message.qmirror}")
     public void receiveMessageAdd(MessageDTO message) {
         log.info("AddMsgQueue: " + message);
     }
