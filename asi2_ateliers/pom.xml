@@ -16,7 +16,7 @@
 	<description>Archi monolithic Card Market</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<start-class>com.cpe.springboot.CardMngMonolithicApplication</start-class>
 	</properties>
 
 	<dependencies>
@@ -75,6 +75,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.cpe.springboot.CardMngMonolithicApplication</mainClass>
+					<layout>JAR</layout>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
