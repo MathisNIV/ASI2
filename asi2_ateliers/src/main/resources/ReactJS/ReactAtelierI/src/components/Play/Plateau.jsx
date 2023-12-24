@@ -11,14 +11,14 @@ export const Plateau = () => {
     const [room, setRoom] = useState('');
     return (
         <div className="ui grid">
-            <div className="two wide column">
+            <div className="col-lg-4">
                 <Chat
                     socket = {socket}
                     room = {room}
                     setRoom = {setRoom}
                 />
             </div>
-            <div className="two wide column">
+            <div className="col-lg-5">
                 <Game
                     socket = {socket}
                     room = {room}

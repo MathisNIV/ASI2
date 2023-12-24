@@ -27,7 +27,7 @@ export const Game = (props) => {
     const socket = props.socket;
     const room = props.room;
     const setRoom = props.setRoom;
-    const [ListOfRooms, setListOfRooms] = useState([" Not available"]);
+    const [ListOfRooms, setListOfRooms] = useState([]);
 
     const HandleCreationButtonClick = (e) => {
         e.preventDefault();
@@ -45,11 +45,12 @@ export const Game = (props) => {
         //     setCurrent_user(data);
         // })();
 
+        // console.log("update", current_user)
+
         socket.emit('createRoom', current_user.login);
         userStart.hidden = true;
         waitingArea.hidden = false;
         setRoom(current_user.login);
-        // console.log("update", current_user)
     }
 
     const HandleJoinButtonClick = (e) => {
@@ -60,7 +61,7 @@ export const Game = (props) => {
                 setListOfRooms(listRooms);
             }
             else{
-                setListOfRooms(["Not available"]);
+                setListOfRooms([]);
             }
         });
     };
@@ -80,10 +81,11 @@ export const Game = (props) => {
                 <div className="column">
                     <div className="card" id="userStart" hidden={false}>
                         <div className="card-body">
-                            <button className="ui button primary" id="start" onClick={HandleCreationButtonClick}>
+                            <button className="ui button primary col-lg-2" id="start"
+                                    onClick={HandleCreationButtonClick}>
                                 Create Room
                             </button>
-                            <Dropdown className="ui button primary" onClick={HandleJoinButtonClick}>
+                            <Dropdown className="ui button col-lg-2" onClick={HandleJoinButtonClick}>
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                                     Select Room
                                 </Dropdown.Toggle>
