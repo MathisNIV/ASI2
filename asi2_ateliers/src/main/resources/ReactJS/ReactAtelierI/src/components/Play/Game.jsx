@@ -7,7 +7,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 export const Game = (props) => {
     let current_user_id = useSelector(state => state.userReducer.current_user);
     const [current_user, setCurrent_user] = useState(null);
-    const string = 'http://localhost:80/users-api/user/'+current_user_id;
+    const [isReady, setIsReady] = useState(false);
+    const [gameState, setGameState] = useState(false);
+    const string = 'http://localhost:80/users-api/user/' + current_user_id;
+
     useEffect(() => {
         // GET request using fetch inside useEffect React hook
         fetch(string)
@@ -28,21 +31,17 @@ export const Game = (props) => {
 
     const HandleCreationButtonClick = (e) => {
         e.preventDefault();
-
-        // Modify the current_user information host, turn, win
-        // console.log("avant", current_user);
-        // (async () => {
-        //     const requestOptions = {
-        //         method: 'PUT',
-        //         headers: { 'Content-Type': 'application/json'},
-        //         body: JSON.stringify({ ...current_user, host: true }),
-        //     };
-        //     const response = await fetch(string, requestOptions);
-        //     const data = await response;
-        //     setCurrent_user(data);
-        // })();
-
         socket.emit('createRoom', current_user.login);
+    const HandleReadyButtonClick = (e) => {
+        e.preventDefault();
+        setIsReady(true);
+
+        props.socket.emit('playerReady');
+    };
+
+    const HandleCreationButtonClick = (e) => {
+        e.preventDefault();
+        props.socket.emit('joinRoom', current_user.login);
         userStart.hidden = true;
         waitingArea.hidden = false;
         setRoom(current_user.login);
@@ -70,6 +69,8 @@ export const Game = (props) => {
     }
 
 
+        props.socket.emit('getRooms');
+    };
     return (
         <div className="container">
             <div className="row">
@@ -114,6 +115,14 @@ export const Game = (props) => {
                     <div className="text-center d-none mt-2" id="quitArea" hidden={true}>
                         <button className="ui button primary" id="quit">Quit Game</button>
                     </div>
+
+                    <button
+                        className="ui button primary"
+                        id="ready"
+                        onClick={HandleReadyButtonClick}
+                        disabled={isReady && (gameState && gameState.isGameStarted)}                    >
+                        Ready
+                    </button>
                 </div>
             </div>
         </div>

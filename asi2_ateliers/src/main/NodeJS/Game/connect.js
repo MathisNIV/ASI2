@@ -8,6 +8,15 @@ server.listen(3000, () => {
 initializeChatLogic(io);
 
 
+
+const gameState = {
+    players: {},
+    currentPlayer: null,
+    turnPoints: 0,
+    playersReady: 0,
+    isGameStarted: false,
+};
+
 io.on('connection', (socket) => {
     console.log(`[connection] ${socket.id}`);
 
@@ -15,7 +24,6 @@ io.on('connection', (socket) => {
         socket.join(room);
         console.log("room created", socket.rooms);
         // console.log("nombre de rooms", socket.rooms.size -1);
-
     })
     socket.on('getRooms', () => {
         let listSocketRooms = io.sockets.adapter.rooms;
@@ -36,6 +44,23 @@ io.on('connection', (socket) => {
     socket.on('test', () => {
         console.log("hello everyone !! ")
     })
+
+    socket.on('playerReady', () => {
+        gameState.playersReady++;
+
+        if (gameState.playersReady === 2) {
+
+            gameState.isGameStarted = true;
+            gameState.playersReady = 0;
+            // TODO tirage de carte
+            io.emit('gameState', gameState);
+            // TODO logique jeu
+        } else {
+            // TODO maj interface utilisateur
+            io.emit('gameState', gameState);
+        }
+    });
+
 
     socket.on('disconnect', () => {
         console.log(`[disconnect] ${socket.id}`);
