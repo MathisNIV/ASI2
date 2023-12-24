@@ -66,6 +66,7 @@ function App() {
                 </Route>
 
                 <Route exact path="/play" element={<Plateau />}/>
+                <Route exact path="/game" element={<Game />}/>
                 <Route exact path="/login" element={<LoginPage />} />
                 <Route exact path="/register" element={<RegisterPage />} />
             </Routes>

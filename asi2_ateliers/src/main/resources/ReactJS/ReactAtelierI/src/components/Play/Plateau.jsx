@@ -8,7 +8,7 @@ import socketClient from "socket.io-client";
 const socket = socketClient.connect('http://localhost:3000');
 
 export const Plateau = () => {
-    const [room, setRoom] = useState('no room');
+    const [room, setRoom] = useState('');
     return (
         <div className="ui grid">
             <div className="two wide column">

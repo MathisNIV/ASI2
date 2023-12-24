@@ -10,30 +10,18 @@ initializeChatLogic(io);
 io.on('connection', (socket) => {
     console.log(`[connection] ${socket.id}`);
 
-    socket.on('createRoom', (room) => {
+    socket.on('joinRoom', (room) => {
         socket.join(room);
         console.log("room created", socket.rooms);
         // console.log("nombre de rooms", socket.rooms.size -1);
 
     })
     socket.on('getRooms', () => {
-        let listSocketRooms = io.sockets.adapter.rooms;
-        const listRooms = [];
-        for (const [key, value] of listSocketRooms.entries()) {
-            if (key !== value.values().next().value) {
-                listRooms.push(key);
-            }
-        }
-        socket.emit('roomsList', listRooms);
+        console.log("liste rooms", io.sockets.adapter.rooms);
     });
-
-    socket.on('joinRoom', (roomSelected) => {
-        socket.join(roomSelected);
-        // io.to(roomSelected).emit("hi");
-        console.log(io.sockets.adapter.rooms)
-    })
 
     socket.on('disconnect', () => {
         console.log(`[disconnect] ${socket.id}`);
+
     });
 });

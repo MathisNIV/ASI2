@@ -17,6 +17,11 @@ export const IndexConnected =(props) => {
             <div className="column">
                 <Link to="/play">PLAY</Link>
             </div>
+            <div className="column">
+                <Link to="/game">GAME</Link>
+            </div>
+
+
         </div>
     );
 }
