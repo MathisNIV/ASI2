@@ -29,9 +29,6 @@ export const Game = (props) => {
     const setRoom = props.setRoom;
     const [ListOfRooms, setListOfRooms] = useState([" Not available"]);
 
-    const HandleCreationButtonClick = (e) => {
-        e.preventDefault();
-        socket.emit('createRoom', current_user.login);
     const HandleReadyButtonClick = (e) => {
         e.preventDefault();
         setIsReady(true);
@@ -69,8 +66,10 @@ export const Game = (props) => {
     }
 
 
+    useEffect(() => {
         props.socket.emit('getRooms');
-    };
+    }, []);
+
     return (
         <div className="container">
             <div className="row">
